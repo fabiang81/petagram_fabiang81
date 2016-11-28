@@ -37,7 +37,7 @@ public class ContactoDeserializador implements JsonDeserializer<ContactoResponse
             JsonObject contactoResponseDataObject = contactoResponseData.get(i).getAsJsonObject();
             JsonObject userJson =           contactoResponseDataObject.getAsJsonObject(JsonKeys.USER);
             String id =                     userJson.get(JsonKeys.USER_ID).getAsString();
-            String nombreCompleto =         userJson.get(JsonKeys.USER_FULLNAME).getAsString();
+            String nombreUsuario =          userJson.get(JsonKeys.USERNAME).getAsString();
 
             JsonObject imageJson =          contactoResponseDataObject.getAsJsonObject(JsonKeys.MEDIA_IMAGES);
             JsonObject stdResolutionJson =  imageJson.getAsJsonObject(JsonKeys.MEDIA_STANDARD_RESOLUTION);
@@ -48,7 +48,7 @@ public class ContactoDeserializador implements JsonDeserializer<ContactoResponse
 
             Contacto contactoActual = new Contacto();
             contactoActual.setId(id);
-            contactoActual.setNombreCompleto(nombreCompleto);
+            contactoActual.setNombreCompleto(nombreUsuario);
             contactoActual.setUrlFoto(urlFoto);
             contactoActual.setLikes(likes);
 

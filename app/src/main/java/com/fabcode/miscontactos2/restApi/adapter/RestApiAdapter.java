@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestApiAdapter {
 
-        public EndpointApi establecerConexionRestApiInstagram(Gson gson){
+    public EndpointApi establecerConexionRestApiInstagram(Gson gson){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ConstantesRestApi.ROOT_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -24,10 +24,19 @@ public class RestApiAdapter {
         return retrofit.create(EndpointApi.class);
     }
 
-        public Gson construyeGsonDeserializadorMediaRecent(){
+    public Gson construyeGsonDeserializadorMediaRecent(){
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(ContactoResponse.class, new ContactoDeserializador());
         return gsonBuilder.create();
+    }
+
+    public EndpointApi establecerConexionApiHeroku(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ConstantesRestApi.ROOT_URL_HEROKU)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit.create(EndpointApi.class);
     }
 
 }

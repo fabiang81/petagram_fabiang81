@@ -6,17 +6,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import com.fabcode.miscontactos2.adapter.ContactoAdaptador;
 import com.fabcode.miscontactos2.adapter.PageAdapter;
 import com.fabcode.miscontactos2.fragment.PerfilFragment;
 import com.fabcode.miscontactos2.fragment.RecyclerViewFragment;
-import com.fabcode.miscontactos2.pojo.Contacto;
 
 import java.util.ArrayList;
 
@@ -25,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private TextView tvNameId;
+    private String nameId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +79,17 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mSettings:
                 Intent intent3 = new Intent(this, FormActivity.class);
                 startActivity(intent3);
+                break;
+            case R.id.mNotificaciones:
+                Intent intent4 = new Intent(this, NotificationsActivity.class);
+                tvNameId = (TextView) findViewById(R.id.tvNameId);
+                nameId = String.valueOf(tvNameId.getText());
+                intent4.putExtra("nameId", nameId);
+                startActivity(intent4);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
 }

@@ -49,7 +49,7 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
                 .placeholder(R.drawable.hueso_del_perro_48)
                 .into(contactoViewHolder.imgFoto);
         contactoViewHolder.tvLikes.setText(String.valueOf(contacto.getLikes()));
-
+        contactoViewHolder.tvNombreCV.setText(String.valueOf(contacto.getNombreCompleto()));
         contactoViewHolder.imgFoto.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -83,7 +83,7 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
     public static class ContactoViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView imgFoto;
-        //private TextView tvNombreCV;
+        private TextView tvNombreCV;
         //private TextView tvTelefonoCV;
         //private ImageButton btnLike;
         private TextView tvLikes;
@@ -91,8 +91,8 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
         public ContactoViewHolder(View itemView) {
             super(itemView);
             imgFoto         = (ImageView) itemView.findViewById(R.id.imgFoto);
-            /*tvNombreCV      = (TextView) itemView.findViewById(R.id.tvNombreCV);
-            tvTelefonoCV    = (TextView) itemView.findViewById(R.id.tvTelefonoCV);
+            tvNombreCV      = (TextView) itemView.findViewById(R.id.tvNameId);
+            /*tvTelefonoCV    = (TextView) itemView.findViewById(R.id.tvTelefonoCV);
             btnLike = (ImageButton) itemView.findViewById(R.id.btnLike);*/
             tvLikes = (TextView) itemView.findViewById(R.id.tvLikes);
 

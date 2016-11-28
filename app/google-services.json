@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "677701717338",
+    "firebase_url": "https://petagramapp-1272d.firebaseio.com",
+    "project_id": "petagramapp-1272d",
+    "storage_bucket": "petagramapp-1272d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677701717338:android:4c3373aaba605758",
+        "android_client_info": {
+          "package_name": "com.fabcode.miscontactos2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "677701717338-ftoncipskk9nrcujhlvacr14c34qg4n1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fabcode.miscontactos2",
+            "certificate_hash": "4CEF4FF240A88C1430AA7C6996D7C000EC288E98"
+          }
+        },
+        {
+          "client_id": "677701717338-7sc6ckrc7h8q5civ3f1lksfs6oaaupek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-hzNqE3_v8eDJp4tsZJp3hx9K52Ozw-s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "677701717338-7sc6ckrc7h8q5civ3f1lksfs6oaaupek.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
