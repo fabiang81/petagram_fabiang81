@@ -10,15 +10,17 @@ public class Contacto {
     private String nombreCompleto;
     private String urlFoto;
     private int likes = 0;
+    private String media_id;
 
     public Contacto() {
 
     }
 
-    public Contacto(String nombreCompleto, String urlFoto, int likes) {
+    public Contacto(String nombreCompleto, String urlFoto, int likes, String media_id) {
         this.nombreCompleto = nombreCompleto;
         this.urlFoto = urlFoto;
         this.likes = likes;
+        this.media_id = media_id;
     }
 
     public String getId() {
@@ -51,5 +53,13 @@ public class Contacto {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    public String getMedia_id() {
+        return media_id;
+    }
+
+    public void setMedia_id(String media_id) {
+        this.media_id = media_id;
     }
 }

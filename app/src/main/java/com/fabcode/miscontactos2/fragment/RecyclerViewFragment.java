@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.fabcode.miscontactos2.R;
 import com.fabcode.miscontactos2.adapter.ContactoAdaptador;
@@ -68,5 +69,10 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
     @Override
     public void inicializarAdaptadorRV(ContactoAdaptador adaptador) {
         listaContactos.setAdapter(adaptador);
+    }
+
+    @Override
+    public void printMessage(){
+        Toast.makeText(getContext(), "Like enviado exitosamente", Toast.LENGTH_SHORT).show();
     }
 }

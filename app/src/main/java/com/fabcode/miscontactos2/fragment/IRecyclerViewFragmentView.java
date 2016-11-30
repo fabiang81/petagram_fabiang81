@@ -19,4 +19,6 @@ public interface IRecyclerViewFragmentView {
 
     public void inicializarAdaptadorRV(ContactoAdaptador adaptador);
 
+    public void printMessage();
+
 }

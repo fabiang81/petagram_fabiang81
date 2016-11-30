@@ -15,6 +15,8 @@ import com.fabcode.miscontactos2.db.ConstructorContactos;
 import com.fabcode.miscontactos2.pojo.Contacto;
 import com.fabcode.miscontactos2.DetalleContacto;
 import com.fabcode.miscontactos2.R;
+import com.fabcode.miscontactos2.presentador.IRecyclerViewFragmentPresenter;
+import com.fabcode.miscontactos2.presentador.RecyclerViewFragmentPresenter;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
 
     ArrayList<Contacto> contactos;
     Activity activity;
+    private IRecyclerViewFragmentPresenter iRecyclerViewFragmentPresenter;
 
         public ContactoAdaptador(ArrayList<Contacto> contactos, Activity activity){
         this.contactos = contactos;
@@ -50,6 +53,7 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
                 .into(contactoViewHolder.imgFoto);
         contactoViewHolder.tvLikes.setText(String.valueOf(contacto.getLikes()));
         contactoViewHolder.tvNombreCV.setText(String.valueOf(contacto.getNombreCompleto()));
+        contactoViewHolder.tvMediaId.setText(String.valueOf(contacto.getMedia_id()));
         contactoViewHolder.imgFoto.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -61,17 +65,17 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
             }
         });
 
-        /*contactoViewHolder.btnLike.setOnClickListener(new View.OnClickListener(){
+        contactoViewHolder.btnLike.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(activity, "Diste like a: "+ contacto.getNombre(),
+                Toast.makeText(activity, "Like enviado correctamente",
                         Toast.LENGTH_SHORT).show();
-
-                ConstructorContactos constructorContactos = new ConstructorContactos(activity);
-                constructorContactos.darLikeContacto(contacto);
-                contactoViewHolder.tvLikes.setText(String.valueOf(constructorContactos.obtenerLikesContacto(contacto)));
+                iRecyclerViewFragmentPresenter = new RecyclerViewFragmentPresenter();
+                iRecyclerViewFragmentPresenter.darLike(contacto.getMedia_id());
+                iRecyclerViewFragmentPresenter.almacenarLike(contacto.getId(), contacto.getMedia_id(), contacto.getNombreCompleto());
+                iRecyclerViewFragmentPresenter.notificarLike("-KXiLvQYC6504YPSpppS", contacto.getUrlFoto(), contacto.getNombreCompleto());
             }
-        });*/
+        });
 
     }
 
@@ -85,17 +89,18 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
         private ImageView imgFoto;
         private TextView tvNombreCV;
         //private TextView tvTelefonoCV;
-        //private ImageButton btnLike;
+        private ImageView btnLike;
+        private TextView tvMediaId;
         private TextView tvLikes;
 
         public ContactoViewHolder(View itemView) {
             super(itemView);
             imgFoto         = (ImageView) itemView.findViewById(R.id.imgFoto);
             tvNombreCV      = (TextView) itemView.findViewById(R.id.tvNameId);
-            /*tvTelefonoCV    = (TextView) itemView.findViewById(R.id.tvTelefonoCV);
-            btnLike = (ImageButton) itemView.findViewById(R.id.btnLike);*/
+            /*tvTelefonoCV    = (TextView) itemView.findViewById(R.id.tvTelefonoCV);*/
+            btnLike = (ImageView) itemView.findViewById(R.id.imgBone);
             tvLikes = (TextView) itemView.findViewById(R.id.tvLikes);
-
+            tvMediaId = (TextView) itemView.findViewById(R.id.tvMediaId);
         }
     }
 

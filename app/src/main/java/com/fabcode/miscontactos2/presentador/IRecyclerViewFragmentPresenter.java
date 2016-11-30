@@ -17,4 +17,11 @@ public interface IRecyclerViewFragmentPresenter {
     public void enviarTokenRegistro(String token, String nameId);
 
     public void mostrarContactosRV();
+
+    public void darLike(String media_id);
+
+    public void almacenarLike(String token, String idFoto, String idUsuario);
+
+    public void notificarLike(String id ,String idFoto, String idUsuario);
+
 }

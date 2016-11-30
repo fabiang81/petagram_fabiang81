@@ -1,6 +1,7 @@
 package com.fabcode.miscontactos2.presentador;
 
 import android.content.Context;
+import android.support.annotation.VisibleForTesting;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -8,6 +9,8 @@ import android.widget.Toast;
 import com.fabcode.miscontactos2.db.ConstructorContactos;
 import com.fabcode.miscontactos2.fragment.IRecyclerViewFragmentView;
 import com.fabcode.miscontactos2.pojo.Contacto;
+import com.fabcode.miscontactos2.pojo.FirebaseRespuesta;
+import com.fabcode.miscontactos2.pojo.LikeRespuesta;
 import com.fabcode.miscontactos2.pojo.UsuarioRespuesta;
 import com.fabcode.miscontactos2.restApi.EndpointApi;
 import com.fabcode.miscontactos2.restApi.adapter.RestApiAdapter;
@@ -74,6 +77,28 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
     }
 
     @Override
+    public void darLike(String media_id) {
+        final String media = media_id;
+        RestApiAdapter restApiAdapter = new RestApiAdapter();
+        EndpointApi endpointApi = restApiAdapter.establecerConexionRestApiInstagram();
+        Call<LikeRespuesta> likeRespuestaCall = endpointApi.enviarLike(media_id);
+
+        likeRespuestaCall.enqueue(new Callback<LikeRespuesta>() {
+            @Override
+            public void onResponse(Call<LikeRespuesta> call, Response<LikeRespuesta> response) {
+                Log.d("MEDIA_ID", media);
+                LikeRespuesta likeRespuesta = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<LikeRespuesta> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    @Override
     public void enviarToken(String nameId){
         String token = FirebaseInstanceId.getInstance().getToken();
         Log.d("TOKEN", token);
@@ -102,9 +127,54 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
         });
     }
 
+    public void almacenarLike(String token, String idFoto, String idUsuario){
+        Log.d("TOKEN", token);
+        RestApiAdapter restApiAdapter = new RestApiAdapter();
+        EndpointApi endpoints = restApiAdapter.establecerConexionApiHeroku();
+        Call<FirebaseRespuesta> firebaseRespuestaCall = endpoints.almacenarLike(token, idFoto, idUsuario);
+        firebaseRespuestaCall.enqueue(new Callback<FirebaseRespuesta>() {
+            @Override
+            public void onResponse(Call<FirebaseRespuesta> call, Response<FirebaseRespuesta> response) {
+                FirebaseRespuesta firebaseRespuesta = response.body();
+                //Log.d("ID_FIREBASE ", firebaseRespuesta.getId());
+                //Log.d("TOKEN_FIREBASE ", firebaseRespuesta.getToken());
+                //Log.d("IDFOTO_FIREBASE", firebaseRespuesta.getIdFoto());
+                //Log.d("IDUSUARIO_FIREBASE", firebaseRespuesta.getIdUsuario());
+            }
+
+            @Override
+            public void onFailure(Call<FirebaseRespuesta> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void notificarLike(String id ,String idFoto, String idUsuario){
+        Log.d("ID", id);
+        RestApiAdapter restApiAdapter = new RestApiAdapter();
+        EndpointApi endpoints = restApiAdapter.establecerConexionApiHeroku();
+        Call<FirebaseRespuesta> firebaseRespuestaCall = endpoints.notificarLike(id, idFoto, idUsuario);
+        firebaseRespuestaCall.enqueue(new Callback<FirebaseRespuesta>() {
+            @Override
+            public void onResponse(Call<FirebaseRespuesta> call, Response<FirebaseRespuesta> response) {
+                FirebaseRespuesta firebaseRespuesta = response.body();
+                //Log.d("ID_FIREBASE ", firebaseRespuesta.getId());
+                //Log.d("TOKEN_FIREBASE ", firebaseRespuesta.getToken());
+                //Log.d("IDFOTO_FIREBASE", firebaseRespuesta.getIdFoto());
+                //Log.d("IDUSUARIO_FIREBASE", firebaseRespuesta.getIdUsuario());
+            }
+
+            @Override
+            public void onFailure(Call<FirebaseRespuesta> call, Throwable t) {
+
+            }
+        });
+    }
+
     @Override
     public void mostrarContactosRV() {
         iRecyclerViewFragmentView.inicializarAdaptadorRV(iRecyclerViewFragmentView.crearAdaptador(contactos));
         iRecyclerViewFragmentView.generarGridLayout();
     }
+
 }

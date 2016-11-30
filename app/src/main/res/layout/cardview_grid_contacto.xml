@@ -36,7 +36,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="name"
-                    android:visibility="invisible"/>
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/tvMediaId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="media"
+                    android:visibility="gone"/>
 
                 <ImageView
                     android:id="@+id/imgBone"

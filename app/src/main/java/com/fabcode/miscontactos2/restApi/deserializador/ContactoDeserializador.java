@@ -45,13 +45,14 @@ public class ContactoDeserializador implements JsonDeserializer<ContactoResponse
 
             JsonObject likesJson =          contactoResponseDataObject.getAsJsonObject(JsonKeys.MEDIA_LIKES);
             int likes =                     likesJson.get(JsonKeys.MEDIA_LIKES_COUNT).getAsInt();
+            String media_id =               contactoResponseDataObject.get(JsonKeys.MEDIA_ID).getAsString();
 
             Contacto contactoActual = new Contacto();
             contactoActual.setId(id);
             contactoActual.setNombreCompleto(nombreUsuario);
             contactoActual.setUrlFoto(urlFoto);
             contactoActual.setLikes(likes);
-
+            contactoActual.setMedia_id(media_id);
             contactos.add(contactoActual);
         }
 
